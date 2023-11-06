@@ -102,45 +102,17 @@ class _CustomListTileWidgetState extends State<CustomListTileWidget> {
         children: [
           ExpansionTile(
             initiallyExpanded: false,
-            title: Row(
-              children: [
-                Flexible(
-                  child: Text(
-                    isExpanded
-                        ? descriptionText
-                        : _getShortenedText(descriptionText),
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black,
-                    ),
-                  ),
+            title: Flexible(
+              child: Text(
+                descriptionText,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black,
                 ),
-                if (!isExpanded)
-                  Padding(
-                    padding: EdgeInsets.only(left: 48),
-                    child: Text(
-                      '$dateText',
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
-                    ),
-                  ),
-              ],
+                
+              ),
             ),
-            onExpansionChanged: (bool expanded) {
-              setState(() {
-                isExpanded = expanded;
-              });
-            },
-            children: [
-              if (isExpanded)
-                Padding(
-                  padding: EdgeInsets.only(left: 16),
-                  child: Text(
-                    '$dateText',
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
-                  ),
-                ),
-            ],
           ),
         ],
       ),
