@@ -110,7 +110,6 @@ class _CustomListTileWidgetState extends State<CustomListTileWidget> {
                   fontWeight: FontWeight.normal,
                   color: Colors.black,
                 ),
-                
               ),
             ),
           ),

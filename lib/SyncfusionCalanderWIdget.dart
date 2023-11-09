@@ -43,19 +43,19 @@ class _SyncFusionCalanderState extends State<SyncFusionCalander> {
                     dataSource: _getCalendarDataSource(),
                     // onviechanged for displaying agenda
 
-                    onViewChanged: (ViewChangedDetails details) {
-                      List<DateTime> dates = details.visibleDates;
-                      String calenderTimezone = '';
-                      List<Object> appointment =
-                          _dataSource.getVisibleAppointments(
-                              dates[0],
-                              calenderTimezone,
-                              dates[(details.visibleDates.length) - 1]);
-                    },
+                    // onViewChanged: (ViewChangedDetails details) {
+                    //   List<DateTime> dates = details.visibleDates;
+                    //   String calenderTimezone = '';
+                    //   List<Object> appointment =
+                    //       _dataSource.getVisibleAppointments(
+                    //           dates[0],
+                    //           calenderTimezone,
+                    //           dates[(details.visibleDates.length) - 1]);
+                    // },
                     // This is for showing appointment for each date
 
                     monthViewSettings: const MonthViewSettings(
-                      appointmentDisplayCount: 1,
+                      // appointmentDisplayCount: 1,
                       appointmentDisplayMode:
                           MonthAppointmentDisplayMode.appointment,
                     ),
@@ -125,9 +125,9 @@ MeetingDataSource _getCalendarDataSource() {
   );
   meetings.add(
     Meeting(
-        eventName: "hello",
-        from: DateTime(2023, 11, 2, 9),
-        to: DateTime(2023, 11, 2, 11),
+        eventName: "hellooooooooosss",
+        from: DateTime(2023, 11, 8, 9),
+        to: DateTime(2023, 11, 8   , 11),
         background: Colors.green,
         startTimeZone: '',
         endTimeZone: '',
@@ -141,7 +141,7 @@ MeetingDataSource _getCalendarDataSource() {
         background: Colors.green,
         startTimeZone: '',
         endTimeZone: '',
-        isAllDay: true),
+        isAllDay: false),
   );
 
   return MeetingDataSource(meetings);
