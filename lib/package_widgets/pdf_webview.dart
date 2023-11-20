@@ -14,14 +14,15 @@ class _PdfWebviewState extends State<PdfWebview> {
   late final WebViewController controller;
   @override
   void initState() {
-    var yourlink = 'http://www.africau.edu/images/default/sample.pdf';
-    // var yourlink = 'https://products.groupdocs.app/viewer/docx';
+    // var yourlink = 'http://www.africau.edu/images/default/sample.pdf';
+    var yourlink = 'https://calibre-ebook.com/downloads/demos/demo.docx';
     controller = WebViewController()
-      ..loadRequest(Uri.parse(
-          'https://docs.google.com/gview?embedded=true&url=$yourlink'));
+      ..loadRequest(
+          Uri.parse('https://products.groupdocs.app/viewer/docx$yourlink'));
     // TODO: implement initState
     super.initState();
   }
+  // 'https://docs.google.com/gview?embedded=true&url=$yourlink'
   // 'https://docs.google.com/document/d/1Tgv7lWSoqEowo9Q6Vk76yZ9kPXXyerdlcZvFVcRAhAk/edit?addon_store$yourlink'
 
   @override
