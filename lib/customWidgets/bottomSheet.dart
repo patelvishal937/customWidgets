@@ -16,6 +16,9 @@ class _BottomBarCustomWidgetState extends State<BottomBarCustomWidget> {
     ['Item P', 'Item Q', 'Item R'],
     ['Item M', 'Item N', 'Item O'],
   ];
+
+  TextEditingController namecontroller = TextEditingController();
+  TextEditingController shortnamecontroller = TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -24,48 +27,47 @@ class _BottomBarCustomWidgetState extends State<BottomBarCustomWidget> {
       body: GestureDetector(
         onTap: () {
           showModalBottomSheet(
-              backgroundColor: Color.fromARGB(255, 9, 6, 6),
+              backgroundColor: Colors.white,
               context: context,
               builder: (BuildContext context) {
-                return Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      margin: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 4, horizontal: 4),
-                            child: Icon(Icons.search),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 4, horizontal: 16),
-                            child: Text("Search"),
-                          ),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(
-                          //       vertical: 4, horizontal: 6),
-                          //   child: Container(
-                          //       // width: double.infinity,
-                          //       child: Icon(Icons.people)),
-                          // ),
-                        ],
-                      ),
+                return Container(
+                  constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height * 0.8,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Column(    
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // cross icon
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(Icons.close),
+                        ),
+                        // This is filter name
+                        CustomtextField(namecontroller, "Filter name", () {}),
+
+                        // This is short name title
+                        CustomtextField(
+                            shortnamecontroller, "short name", () {}),
+
+                        // Button for creating shortcut
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          width: MediaQuery.of(context).size.width,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.all(16),
+                                  backgroundColor: const Color(0XFF075E54)),
+                              onPressed: () {},
+                              child: Text("create filter")),
+                        )
+                      ],
                     ),
-                    // ListView.builder(
-                    //   itemCount: List,
-                    //   itemBuilder: (BuildContext context, int index) {
-                    //     return ListTile(
-                    //       title: Text('h'),
-                    //     );
-                    //   },
-                    // )
-                  ],
+                  ),
                 );
               });
         },
@@ -88,6 +90,34 @@ class _BottomBarCustomWidgetState extends State<BottomBarCustomWidget> {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget CustomtextField(
+      TextEditingController controller, String hintText, func) {
+    return Container(
+      height: 45.0,
+      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.black.withOpacity(0.3))),
+      // decoration: Style.decoration,
+      padding: const EdgeInsets.all(10.0),
+      child: TextField(
+        style: const TextStyle(color: Colors.black),
+        onTap: func,
+        controller: controller,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: hintText,
+          hintStyle: TextStyle(
+              fontFamily: 'Helvetica',
+              color: Colors.black.withOpacity(0.5),
+              fontSize: 14.0),
+          contentPadding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
         ),
       ),
     );

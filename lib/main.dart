@@ -1,3 +1,4 @@
+import 'package:authexample/customWidgets/bottomSheet.dart';
 import 'package:authexample/imagePicker/image_picker_widget.dart';
 import 'package:authexample/package_widgets/pdf_webview.dart';
 import 'package:authexample/poll/flutter_poll.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: ImagePickerWidget(),
+      home: BottomBarCustomWidget(),
     );
   }
 }
