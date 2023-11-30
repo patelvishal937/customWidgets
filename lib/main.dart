@@ -1,3 +1,4 @@
+import 'package:authexample/bottomNavBarWidgets/bottom_navbar_widget.dart';
 import 'package:authexample/customWidgets/bottomSheet.dart';
 import 'package:authexample/imagePicker/image_picker_widget.dart';
 import 'package:authexample/package_widgets/pdf_webview.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: BottomBarCustomWidget(),
+      home: BottomNavbarWidget(),
     );
   }
 }
