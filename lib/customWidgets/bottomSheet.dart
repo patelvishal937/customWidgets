@@ -17,6 +17,7 @@ class _BottomBarCustomWidgetState extends State<BottomBarCustomWidget> {
   //   ['Item M', 'Item N', 'Item O'],
   // ];
 
+  bool isError = false;
   TextEditingController namecontroller = TextEditingController();
   TextEditingController shortnamecontroller = TextEditingController();
   Widget build(BuildContext context) {
@@ -51,11 +52,22 @@ class _BottomBarCustomWidgetState extends State<BottomBarCustomWidget> {
                           icon: Icon(Icons.close),
                         ),
                         // This is filter name
-                        CustomtextField(namecontroller, "Filter name", () {}),
+                        CustomtextField(namecontroller, "Filter name", () {},
+                            "Enter Filter Name", (val) {
+                          if (val.isEmpty) {
+                            setState(() {
+                              isError = true;
+                            });
+                          } else {
+                            setState(() {
+                              isError = false;
+                            });
+                          }
+                        }),
 
                         // This is short name title
-                        CustomtextField(
-                            shortnamecontroller, "short name", () {}),
+                        CustomtextField(shortnamecontroller, "short name",
+                            () {}, "Enter Short Name", (val) {}),
 
                         // Button for creating shortcut
                         Container(
@@ -98,31 +110,46 @@ class _BottomBarCustomWidgetState extends State<BottomBarCustomWidget> {
     );
   }
 
-  Widget CustomtextField(
-      TextEditingController controller, String hintText, func) {
-    return Container(
-      height: 45.0,
-      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.black.withOpacity(0.3))),
-      // decoration: Style.decoration,
-      padding: const EdgeInsets.all(10.0),
-      child: TextField(
-        style: const TextStyle(color: Colors.black),
-        onTap: func,
-        controller: controller,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hintText,
-          hintStyle: TextStyle(
-              fontFamily: 'Helvetica',
-              color: Colors.black.withOpacity(0.5),
-              fontSize: 14.0),
-          contentPadding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
+  Widget CustomtextField(TextEditingController controller, String hintText,
+      func, String errorText, void Function(String)? onChanged) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          height: 45.0,
+          margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.black.withOpacity(0.3))),
+          // decoration: Style.decoration,
+          padding: const EdgeInsets.all(10.0),
+          child: TextField(
+            style: const TextStyle(color: Colors.black),
+            onTap: func,
+            controller: controller,
+            onChanged: onChanged,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hintText,
+              hintStyle: TextStyle(
+                  fontFamily: 'Helvetica',
+                  color: Colors.black.withOpacity(0.5),
+                  fontSize: 14.0),
+              contentPadding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
+            ),
+          ),
         ),
-      ),
+        if (isError = false)
+          Padding(
+            padding: const EdgeInsets.all(0).copyWith(left: 16),
+            child: Text(
+              errorText,
+              style: const TextStyle(color: Colors.red),
+            ),
+          )
+      ],
     );
   }
 }
