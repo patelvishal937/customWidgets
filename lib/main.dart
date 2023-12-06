@@ -25,6 +25,7 @@
 import 'package:authexample/api/UI/todo_screen.dart';
 import 'package:authexample/api/bloc/todo_cubit.dart';
 import 'package:authexample/api/repository/todo_repository.dart';
+import 'package:authexample/poll/flutter_poll.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
             Dio(),
           ),
         ),
-        child: MoviesPage(),
+        child: ExamplePolls(),
       ),
     );
   }
