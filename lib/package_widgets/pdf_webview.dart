@@ -39,7 +39,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 //     );
 //   }
 // }
- 
+
 class WebViewApp extends StatefulWidget {
   const WebViewApp({super.key});
 
@@ -66,8 +66,16 @@ class _WebViewAppState extends State<WebViewApp> {
         title: const Text('Flutter WebView'),
       ),
       // body: WebViewWidget(controller: controller),
-      body: SfPdfViewer.network(
-          'https://www.africau.edu/images/default/sample.pdf'),
+      body: Center(
+        child: Container(
+          child: SfPdfViewer.network(
+            'https://s3.ap-south-1.amazonaws.com/prepseed/prod/ldoc/chat/Vgg6f7rn9He1BpwX6Iay/Testing.pdf',
+            canShowScrollStatus: false,
+            pageLayoutMode: PdfPageLayoutMode.single,
+            // scrollDirection: PdfScrollDirection.vertical,
+          ),
+        ),
+      ),
     );
   }
 }

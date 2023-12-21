@@ -25,6 +25,7 @@
 import 'package:authexample/api/UI/todo_screen.dart';
 import 'package:authexample/api/bloc/todo_cubit.dart';
 import 'package:authexample/api/repository/todo_repository.dart';
+import 'package:authexample/package_widgets/pdf_webview.dart';
 import 'package:authexample/poll/flutter_poll.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
             Dio(),
           ),
         ),
-        child: ExamplePolls(),
+        child: WebViewApp(),
       ),
     );
   }
